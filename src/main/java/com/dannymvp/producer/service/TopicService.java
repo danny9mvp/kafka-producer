@@ -1,18 +1,16 @@
 package com.dannymvp.producer.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TopicService {
 
-    private KafkaTemplate<String, String> kafkaTemplate;
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public TopicService(KafkaTemplate<String, String> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
-
-    public void send(String topic, String message) {
+    public void send(String topic, Object message) {
         kafkaTemplate.send(topic, message);
     }
 }
